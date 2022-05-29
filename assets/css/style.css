@@ -318,7 +318,7 @@
 }
 
 .hideUp {
-    animation: hideUp 1s ease-in-out;
+    animation: hideUp 2s ease-in-out;
     opacity: 0;
 }
 
@@ -333,7 +333,7 @@
 }
 
 .hideDown {
-    animation: hideDown 1s ease-in-out;
+    animation: hideDown 2s ease-in-out;
     opacity: 0;
 }
 
@@ -351,7 +351,7 @@
     opacity: 0;
     z-index: -1;
     pointer-events: none;
-    animation: hide 1.2s ease-in-out;
+    animation: hide 2.2s ease-in-out;
 }
 
 @keyframes hide {
