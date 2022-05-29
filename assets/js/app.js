@@ -55,3 +55,23 @@ function navbarActive() {
         $('a[href="#home"]').parent().addClass('active')
     }
 }
+
+var i = 0, idx = 0;
+var text = ["Graphich Designer", "Video Editor"];
+var speed = 50;
+function typingText(){
+    if(idx >= text.length) idx = 0;
+
+    document.getElementById("typingText").innerHTML += text[idx].charAt(i);
+    i++;
+    
+    if(i > text.length + 50){
+        document.getElementById("typingText").innerHTML = "";
+        i = 0;
+        idx++;
+    }
+   
+    setTimeout(typingText, 50);
+}
+ 
+ setTimeout(typingText, 200);
