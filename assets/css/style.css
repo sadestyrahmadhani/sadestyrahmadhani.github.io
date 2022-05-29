@@ -139,6 +139,10 @@
     margin-top: -130px;
 }
 
+#education {
+    position: relative;
+}
+
 #education .title {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 40px;
@@ -287,4 +291,12 @@
 
 #contact .form-control:focus {
     box-shadow: 0 0 10px #f800ba5c;
+}
+
+#ballsAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
