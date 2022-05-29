@@ -138,3 +138,9 @@ function ballAnimation() {
         }
     }
 }
+
+$(window).on('load', function(){
+    $('.loader .hide1').addClass('hideDown')
+    $('.loader .hide2').addClass('hideUp')
+    $('.loader').addClass('hide')
+})
