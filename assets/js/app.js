@@ -157,7 +157,7 @@ function objek3D() {
     camera.position.z = 5
 
     const geometryAngkasa = new THREE.SphereGeometry(5, 30, 30)
-    const textureAngkasa = new THREE.TextureLoader().load('assets/images/pexels-kai-pilger-1341279 (1).jpg')
+    const textureAngkasa = new THREE.TextureLoader().load('https://i.ibb.co/B4RGM3d/pexels-kai-pilger-1341279-1.jpg')
     const materialAngkasa = new THREE.MeshBasicMaterial({
         map: textureAngkasa,
         side: THREE.BackSide
