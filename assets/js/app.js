@@ -12,7 +12,7 @@ $(function(){
         e.preventDefault()
     
         $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top - 130
+            scrollTop: $($(this).attr('href')).offset().top
         })
     })
 })
@@ -29,31 +29,36 @@ function navbarActive() {
     if($(this).scrollTop() > $('#about').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#about"]').parent().addClass('active')
+        $('#renderThreeJS').addClass('opacity-0')
     }
 
     if($(this).scrollTop() > $('#education').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#education"]').parent().addClass('active')
+        $('#renderThreeJS').removeClass('opacity-0')
     }
     
     if($(this).scrollTop() > $('#skill').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#skill"]').parent().addClass('active')
     }
-
+    
     if($(this).scrollTop() > $('#project').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#project"]').parent().addClass('active')
+        $('#renderThreeJS').addClass('opacity-0')
     }
 
     if($(this).scrollTop() > $('#contact').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#contact"]').parent().addClass('active')
+        $('#renderThreeJS').addClass('opacity-0')
     }
 
     if($(this).scrollTop() < $('#about').offset().top - 130){
         $('.navbar').find('.active').removeClass('active')
         $('a[href="#home"]').parent().addClass('active')
+        $('#renderThreeJS').addClass('opacity-0')
     }
 }
 
@@ -144,3 +149,52 @@ $(window).on('load', function(){
     $('.loader .hide2').addClass('hideUp')
     $('.loader').addClass('hide')
 })
+
+function objek3D() {
+    const scene = new THREE.Scene()
+    const el = document.getElementById('renderThreeJS')
+    const camera = new THREE.PerspectiveCamera(75, el.offsetWidth / el.offsetHeight, 0.1, 1000)
+    camera.position.z = 5
+
+    const geometryAngkasa = new THREE.SphereGeometry(5, 30, 30)
+    const textureAngkasa = new THREE.TextureLoader().load('assets/images/pexels-kai-pilger-1341279 (1).jpg')
+    const materialAngkasa = new THREE.MeshBasicMaterial({
+        map: textureAngkasa,
+        side: THREE.BackSide
+    })
+    const meshAngkasa = new THREE.Mesh(geometryAngkasa, materialAngkasa)
+    scene.add(meshAngkasa)
+
+    const bumpGeometry = new THREE.SphereGeometry(1, 20, 20)
+    const textureBump = new THREE.TextureLoader().load('assets/images/marssurface.jpg')
+    const bumpMaterial = new THREE.MeshPhongMaterial({
+        map: textureBump,
+        shininess: 80,
+        bumpMap: textureBump,
+        bumpScale: 0.010
+    })
+    const meshBump = new THREE.Mesh(bumpGeometry, bumpMaterial)
+    scene.add(meshBump)
+
+    const light = new THREE.PointLight(0xffffff, 1.1)
+    light.position.set(-40, 25, 10)
+    scene.add(light)
+    
+    const renderer = new THREE.WebGLRenderer()
+    renderer.setSize(el.offsetWidth, el.offsetHeight)
+    el.appendChild(renderer.domElement)
+
+    function draw() {
+        meshBump.rotation.x += 0.005
+        meshBump.rotation.y += 0.005
+        meshAngkasa.rotation.x += 0.00007
+        meshAngkasa.rotation.y += 0.00007
+
+        renderer.render(scene, camera)
+        requestAnimationFrame(draw)
+    }
+    
+    draw()
+}
+
+objek3D()
